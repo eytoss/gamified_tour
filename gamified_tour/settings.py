@@ -82,7 +82,7 @@ if _environment == "server":
     _db_password = "test123why"
     _db_host = "jamiexu.mysql.pythonanywhere-services.com"
     _db_port = 3306
-	STATIC_ROOT = "/home/jamiexu/gamified_tour/static/"
+    STATIC_ROOT = "/home/jamiexu/gamified_tour/static/"
 else: # local
     _db_name = "gamified_tour"
     _db_user = "root"
