@@ -1,3 +1,4 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+def welcome(request):
+    return HttpResponse("There is no spoon. You know where you are.")
