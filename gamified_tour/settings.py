@@ -75,20 +75,19 @@ WSGI_APPLICATION = 'gamified_tour.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-_environment = os.environ.get("envi", "local")
-if _environment == "local":
-    _db_name = "gamified_tour"
-    _db_user = "root"
-    _db_password = "test"
-    _db_host = ""
-    _db_port = 3306
-else: # jamiexu.pythonanywhere
+_environment = os.environ.get("envi", "server")
+if _environment == "server":
     _db_name = "jamiexu$gamified_tour"
     _db_user = "jamiexu"
     _db_password = "test123why"
     _db_host = "jamiexu.mysql.pythonanywhere-services.com"
     _db_port = 3306
-
+else: # local
+    _db_name = "gamified_tour"
+    _db_user = "root"
+    _db_password = "test"
+    _db_host = ""
+    _db_port = 3306
 
 DATABASES = {
     'default': {
