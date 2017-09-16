@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+import uuid
 
 class Position(models.Model):
     """
@@ -17,14 +18,14 @@ class Position(models.Model):
     # TODO: update below precision level once get real value from estimote.
     position_x = models.DecimalField(
         blank=False, null=False, max_digits=6, decimal_places=4,
-        help_text="horizontal axis value in current location’s coordinate system")
+        help_text="horizontal axis value in current location's coordinate system")
     position_y = models.DecimalField(
         blank=False, null=False, max_digits=6, decimal_places=4,
-        help_text="vertical axis value in current location’s coordinate system")
+        help_text="vertical axis value in current location's coordinate system")
     position_orientation = models.DecimalField(
         blank=True, null=True, max_digits=6, decimal_places=4,
-        help_text="user’s facing direction, for example facing north takes "
-            "value “0”, facing southwest takes value “225”.")
+        help_text="user's facing direction, for example facing north takes "
+            "value '0', facing southwest takes value '225'.")
     position_accuracy = models.CharField(
         max_length=20, blank=False, null=False,
         help_text="confidence level of the position_[x|y|orientation] values"
