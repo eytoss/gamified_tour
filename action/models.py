@@ -3,6 +3,27 @@ from __future__ import unicode_literals
 from django.db import models
 import uuid
 
+
+class ModernModel(models.Model):
+    guid = models.CharField(
+        max_length=36, blank=True, unique=True, default=uuid.uuid4,
+        help_text="Unique, externally-friendly identifier"
+    )
+    create_dt = models.DateTimeField(auto_now_add=True)
+    modify_dt = models.DateTimeField(auto_now=True)
+    meta_data = models.CharField(
+        max_length=200, blank=True, null=True,
+        help_text="All other available info of this record. "
+            "Used for backfill should new fields are introduced from here."
+    )
+
+
+class Action(ModernModel):
+    code = models.CharField(max_length=50, blank=False, unique=True)
+    name = models.CharField(max_length=50, blank=True, null=False)
+    action_type = models.CharField(max_length=50, blank=True, unique=True)
+
+
 class ExhibitAction(models.Model):
     """
     Each record presents one available user-interactive action provided by the exhibit
@@ -13,9 +34,9 @@ class ExhibitAction(models.Model):
     )
     # TODO: realize the below fields
     # exhibit_guid, # FK ref.
-    create_dt = models.DateTimeField(auto_now=True)
+    create_dt = models.DateTimeField(auto_now_add=True)
     details = models.CharField(
-        max_length=20, blank=False, null=False,
+        max_length=200, blank=False, null=False,
         help_text="indicate action type, # TODO: will improve this field"
     )
 
