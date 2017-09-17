@@ -20,7 +20,8 @@ class ModernModel(models.Model):
             "Served as 1. Notes. OR 2. Extra info to support "
             "backfill should new fields are needed from here."
     )
-
+    class Meta:
+        abstract = True
 
 class Action(ModernModel):
     """
