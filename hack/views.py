@@ -2,6 +2,7 @@ import json
 from django.shortcuts import render
 from django.http import HttpResponse
 from location.models import UserPosition
+from location.models import ExhibitPosition
 from location import utils as location_utils
 
 def welcome(request):
@@ -11,10 +12,9 @@ def welcome(request):
 def hack_positions_reach(request):
     """
     """
-    # TODO: remove below hardcorded exhibit, get info from table `exhibit`
-    #   let exhibit A be at (3, 4) with visible range of 5.
     json_request = json.loads(request.body)
     position = json_request["position"]
+    # TODO: utile method to find the nearest exhibit.
     distance, _, _ = location_utils.get_distance_range(position["x"], position["y"], 3, 4, "veryHigh")
     found_exhibit = False
     exhibit_info = {}
