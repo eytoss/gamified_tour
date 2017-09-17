@@ -14,8 +14,6 @@ class ActionAdmin(admin.ModelAdmin):
 @admin.register(ExhibitAction)
 class ExhibitActionAdmin(admin.ModelAdmin):
     list_display = [
-        'guid', 'details',
-        'create_dt',
+        'details'
     ]
-    search_fields = ['guid', 'exhibit_guid']
 
