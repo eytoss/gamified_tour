@@ -5,6 +5,9 @@ import uuid
 
 
 class ModernModel(models.Model):
+    """
+    served as base model
+    """
     guid = models.CharField(
         max_length=36, blank=True, unique=True, default=uuid.uuid4,
         help_text="Unique, externally-friendly identifier"
@@ -14,11 +17,16 @@ class ModernModel(models.Model):
     meta_data = models.CharField(
         max_length=200, blank=True, null=True,
         help_text="All other available info of this record. "
-            "Used for backfill should new fields are introduced from here."
+            "Served as 1. Notes. OR 2. Extra info to support "
+            "backfill should new fields are needed from here."
     )
 
 
 class Action(ModernModel):
+    """
+    Each record represents one action that might be provided/taken by
+        other entities.
+    """
     code = models.CharField(max_length=50, blank=False, unique=True)
     name = models.CharField(max_length=50, blank=True, null=False)
     action_type = models.CharField(max_length=50, blank=True, unique=True)

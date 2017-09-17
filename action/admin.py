@@ -4,7 +4,7 @@ from action.models import Action, ExhibitAction
 @admin.register(Action)
 class ActionAdmin(admin.ModelAdmin):
     list_display = [
-        'guid', 'code', "name",
+        'guid', 'code', "name", "action_type",
         "meta_data",
         'create_dt', "modify_dt"
     ]
