@@ -27,7 +27,7 @@ class PositionModel(ModernModel):
 		abstract = True
 
 
-class Position(PositionModel):
+class UserPosition(PositionModel):
     """
     Each record presents one user's point of time and space
     """
@@ -35,6 +35,22 @@ class Position(PositionModel):
     # user_guid, # FK ref.
     # location_guid, # FK to estimote_locations
     # TODO: update below precision level once get real value from estimote.
+    location_id = models.CharField(
+        max_length=20, blank=False, null=False,
+        help_text="need to use FK once location model is built"
+    )
+
+class ExhibitPosition(PositionModel):
+    """
+    Each record presents one exhibit's location related info
+    """
+    # TODO: realize the below fields
+    # exhibit_guid, # FK ref.
+    # location_guid, # FK to estimote_locations
+    visible_range = models.DecimalField(
+        blank=True, null=False, max_digits=10, decimal_places=6,
+        help_text="exhibit will be considered visible in the circle using "
+            "position as circle point and visible range as radius.")
     location_id = models.CharField(
         max_length=20, blank=False, null=False,
         help_text="need to use FK once location model is built"

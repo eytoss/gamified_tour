@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render
 from django.http import HttpResponse
-from location.models import Position
+from location.models import UserPosition
 from location import utils as location_utils
 
 def welcome(request):

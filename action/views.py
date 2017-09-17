@@ -1,13 +1,13 @@
 import json
 import apiai
 from django.http import HttpResponse
-from location.models import Position
+from location.models import UserPosition
 
 CLIENT_ACCESS_TOKEN = '6e7c2f9db6c846e7bd71b417170a5c1f'
 
 def welcome(request):
     # TODO: remove below fake creating
-    pos = Position.objects.create(
+    pos = UserPosition.objects.create(
         position_x = 3,
         position_y = 4
     )

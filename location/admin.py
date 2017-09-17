@@ -1,8 +1,8 @@
 from django.contrib import admin
-from location.models import Position
+from location.models import UserPosition
 
-@admin.register(Position)
-class PositionAdmin(admin.ModelAdmin):
+@admin.register(UserPosition)
+class UserPositionAdmin(admin.ModelAdmin):
     list_display = [
         'guid', 'position_x', 'position_y',
         'position_orientation', 'position_accuracy',
