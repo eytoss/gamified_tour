@@ -14,16 +14,25 @@ def hack_positions_reach(request):
     """
     json_request = json.loads(request.body)
     position = json_request["position"]
-    # TODO: utile method to find the nearest exhibit.
-    distance, _, _ = location_utils.get_distance_range(position["x"], position["y"], 3, 4, "veryHigh")
+	# use visible rectangle instead of visible circle, to shorten response time.
+    x = position["x"]
+    y = position["y"]
+    accuracy = position["accuracy"]
+    visible_exhibits = ExhibitPosition.objects\
+        .filter(position_x_left__lte=x)\
+        .filter(position_x_right__gte=x)\
+        .filter(position_y_lower__lte=y)\
+        .filter(position_y_upper__gte=y)
+    #distance, _, _ = location_utils.get_distance_range(position["x"], position["y"], 3, 4, "veryHigh")
     found_exhibit = False
     exhibit_info = {}
     # TODO: use position_info["accuracy"] "+/- 1.8m" to adjust the below inequation
-    if distance <= 5:
+    if len(visible_exhibits) >= 1: # TODO: need to get one and only one
         found_exhibit = True
+        exhibit = visible_exhibits[0]
         exhibit_info = {
-            "distance": distance,
-            "guid": "<place_holder>",
+            "distance": location_utils.get_distance_range(exhibit.position_x, exhibit.position_y, x, y, accuracy)[0],
+            "guid": exhibit.guid,
             # TODO: get actual actions of found exhibit from table `exhibit_actions`
             "actions": [
                 {
