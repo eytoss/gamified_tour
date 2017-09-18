@@ -27,7 +27,7 @@ class PositionModel(ModernModel):
 		abstract = True
 
 
-class UserPosition(PositionModel):
+class UserPositionHistory(PositionModel):
     """
     Each record presents one user's point of time and space
     """

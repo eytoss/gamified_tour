@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render
 from django.http import HttpResponse
-from location.models import UserPosition
+from location.models import UserPositionHistory
 from location.models import ExhibitPosition
 from location import utils as location_utils
 
@@ -21,7 +21,7 @@ def hack_positions_reach(request):
     orientation = position["orientation"]
     location_id = position["location_id"]
     # record user position history
-    UserPosition.objects.create(
+    UserPositionHistory.objects.create(
 		position_x=x, position_y=y, position_accuracy=accuracy,
 		position_orientation=orientation, location_id=location_id
 	)

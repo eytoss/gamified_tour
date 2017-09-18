@@ -1,6 +1,6 @@
 from django.contrib import admin
 from location.models import ExhibitPosition
-from location.models import UserPosition
+from location.models import UserPositionHistory
 
 @admin.register(ExhibitPosition)
 class ExhibitPositionAdmin(admin.ModelAdmin):
@@ -15,8 +15,8 @@ class ExhibitPositionAdmin(admin.ModelAdmin):
     list_filter = ['position_accuracy']
 
 
-@admin.register(UserPosition)
-class UserPositionAdmin(admin.ModelAdmin):
+@admin.register(UserPositionHistory)
+class UserPositionHistoryAdmin(admin.ModelAdmin):
     list_display = [
         'guid', 'position_x', 'position_y',
         'position_orientation', 'position_accuracy',

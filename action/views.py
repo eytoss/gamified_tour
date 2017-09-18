@@ -1,7 +1,7 @@
 import json
 import apiai
 from django.http import HttpResponse
-from location.models import UserPosition
+from location.models import UserPositionHistory
 
 CLIENT_ACCESS_TOKEN = '6e7c2f9db6c846e7bd71b417170a5c1f'
 
