@@ -18,6 +18,13 @@ def hack_positions_reach(request):
     x = position["x"]
     y = position["y"]
     accuracy = position["accuracy"]
+    orientation = position["orientation"]
+    location_id = position["location_id"]
+    # record user position history
+    UserPosition.objects.create(
+		position_x=x, position_y=y, position_accuracy=accuracy,
+		position_orientation=orientation, location_id=location_id
+	)
     visible_exhibits = ExhibitPosition.objects\
         .filter(position_x_left__lte=x)\
         .filter(position_x_right__gte=x)\
